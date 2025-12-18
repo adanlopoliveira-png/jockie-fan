@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jockie Music Fan Portal</title>
+    <style>
+        /* Reset básico e Fontes */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #161723;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Variáveis de Cores */
+        :root {
+            --primary-color: #5865F2; /* Discord Blurple */
+            --secondary-color: #23272A;
+            --accent-color: #404eed;
+            --text-gray: #b9bbbe;
+            --button-gradient: linear-gradient(90deg, #5865F2, #7289DA);
+        }
+
+        /* Barra de Navegação */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background-color: rgba(22, 23, 35, 0.95);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        /* Seção Hero (Principal) */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 20px 20px; /* Padding top para compensar o header fixo */
+            background: radial-gradient(circle at top right, rgba(88, 101, 242, 0.1), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(88, 101, 242, 0.05), transparent 40%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            max-width: 800px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            background: var(--button-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        /* Botões */
+        .button-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.6);
+        }
+
+        /* Botão Secundário (Source) */
+        .secondary-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .secondary-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: auto;
+        }
+
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Elementos Decorativos */
+        .decoration {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+        }
+        
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(88, 101, 242, 0.15);
+            top: 20%;
+            left: 10%;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            nav ul {
+                display: none;
+            }
+            header {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="decoration circle-1"></div>
+
+    <header>
+        <a href="#" class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l12-2v13"></path>
+                <circle cx="6" cy="18" r="3"></circle>
+                <circle cx="18" cy="16" r="3"></circle>
+            </svg>
+            Jockie<span>Fans</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="https://www.jockiemusicfans.com">Site Oficial</a></li>
+                <li><a href="#">Comandos</a></li>
+                <li><a href="#">Suporte</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>O melhor bot de música para a sua <span>comunidade</span></h1>
+        
+        <p>
+            Eleve o nível do seu servidor. Adicione agora e comece a ouvir.
+        </p>
+
+        <div class="button-group">
+            <!-- Botão solicitado com o Link do Discord -->
+            <a href="https://discord.com/oauth2/authorize?client_id=1450946329097273466&permissions=8&integration_type=0&scope=bot" class="cta-button" target="_blank">
+                Convidar Bot
+            </a>
+
+            <!-- Botão para a Source solicitada -->
+            <a href="https://www.jockiemusicfans.com" class="secondary-button" target="_blank">
+                Visitar JockieMusicFans
+            </a>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>Source: <a href="https://www.jockiemusicfans.com" target="_blank">www.jockiemusicfans.com</a></p>
+        <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">Não afiliado oficialmente ao Discord.</p>
+    </footer>
+
+</body>
+</html>
